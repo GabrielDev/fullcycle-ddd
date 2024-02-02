@@ -1,3 +1,5 @@
+import OrderItemModel from "../../../infrastructure/order/repository/sequilize/order-item.model";
+
 export default class OrderItem {
   private _id: string;
   private _productId: string;
@@ -43,5 +45,15 @@ export default class OrderItem {
 
   total(): number {
     return this._price * this._quantity
+  }
+
+  static from(item: OrderItemModel): OrderItem {
+    return new OrderItem(
+      item.id,
+      item.name,
+      item.price,
+      item.product_id,
+      item.quantity
+    )
   }
 }
